@@ -1,6 +1,6 @@
-#Pre-Entrega N°3 - Lucas Figal
+# 🚀Pre-Entrega N°3 - Lucas Figal
 
-### Pasos
+## 🛠️ Pasos
 
 1.  **Clonar el repositorio**
    
