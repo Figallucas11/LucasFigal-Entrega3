@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mi Proyecto de Juegos{% endblock title %}</title>
+</head>
+<body>
+    <header>
+        <h1>Mi Aplicación de Videojuegos</h1>
+        <nav>
+            <a href="{% url 'inicio' %}">Inicio</a> | 
+            <a href="{% url 'agregar_juego' %}">Agregar Juego</a> | 
+            <a href="{% url 'lista_juegos' %}">Ver Lista</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}
+            {% endblock content %}
+    </main>
+
+    <footer>
+        <hr>
+        <p>Fin de la Página</p>
+    </footer>
+</body>
+</html>

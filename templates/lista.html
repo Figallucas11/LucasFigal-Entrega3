@@ -1,15 +1,21 @@
-<h1>Esta es la lista de juegos que contiene la pagina:</h1>
+{% extends 'base.html' %} 
 
-<ul>
-    {% for juego in lista_de_juegos %}
+{% block title %}Lista de Juegos{% endblock title %}
 
-    <li>
-        {{juego}}
-    </li>
+{% block content %}
+    <h2>Juegos Guardados</h2>
+    
+    {% if juegos %}
+        <ul class="list-group">
+            {% for juego in juegos %} 
+                <li class="list-group-item">
+                    <h5>Nombre: {{ juego.nombre }}</h5>
+                    <p>Género: {{ juego.genero }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aún no has agregado ningún juego. <a href="{% url 'agregar_juego' %}">¡Crea el primero!</a></p>
+    {% endif %}
 
-    {% endfor %}
-
-</ul>
-
-<h2>Para agregar mas juegos a la lista, introduzca la url http://127.0.0.1:8000/agregar-juego/"genero del juego"/"nombre del juego"/</h2>
-   <h4>Una vez hecho esto, vamos a cargar el juego con su genero a la base de datos. Tambien podremos verlo ejecutando el paso anterior nuevamente</h4> 
+{% endblock content %}

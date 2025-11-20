@@ -1,23 +1,23 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from inicio.models import Juego
+from django.shortcuts import render, redirect
+from .forms import JuegoForm
+from .models import Juego
 
-#pagina Home
+# VISTA PARA EL INICIO
 def inicio(request):
     return render(request, 'inicio.html')
 
-#pagina para crear entradas
+# VISTA PARA CARGAR EL FORMULARIO 
+def crear_juego(request):
+    if request.method == 'POST':
+        form = JuegoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_juegos') 
+    else:
+        form = JuegoForm()
+    return render(request, 'agregar-juego.html', {'form': form})
 
-def agregar_juego(request, genero, nombre):
-    juego = Juego(genero=genero, nombre=nombre)
-    juego.save()
-
-    return render(request, 'agregar-juego.html', {'juego1' : juego})
-
-#pagina para visualizar la lista completa
-
-def lista(request):
-
-    juegos = Juego.objects.all()
-
-    return render(request, 'lista.html', {'lista_de_juegos': juegos })
+# VISTA PARA MOSTRAR LA LISTA
+def lista_juegos(request):
+    juegos_guardados = Juego.objects.all()
+    return render(request, 'lista.html', {'juegos': juegos_guardados})

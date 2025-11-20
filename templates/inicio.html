@@ -1,8 +1,22 @@
-<h1>Bienvenido a la lista de Juegos</h1>
+{% extends 'base.html' %} 
 
-<h2>Para acceder a la lista de juegos: introduzca la url http://127.0.0.1:8000/lista/</h2>
-  <h4>De esta forma, vamos a poder visualizar todos los juegos que se crearon previamente y los que se agregaron en esta sesion a la base de datos.</h4>  
+{% block title %}Inicio{% endblock title %}
 
+{% block content %}
+    <h1>¡Bienvenido a la Aplicación de Videojuegos!</h1>
+    
+    <p>Esta aplicación demuestra la capacidad de:</p>
+    <ul>
+        <li><strong>Crear modelos</strong> (Juego, Consola, Empresa).</li>
+        <li>Implementar lógica de <strong>Formularios ModelForm</strong>.</li>
+        <li>Guardar datos en la base de datos a través de una vista (POST).</li>
+        <li>Consultar y listar todos los datos guardados.</li>
+    </ul>
 
-<h2>Para agregar un juego con su genero a la lista: introduzca la url http://127.0.0.1:8000/agregar-juego/"genero del juego"/"nombre del juego"/</h2>
-   <h4>Una vez hecho esto, vamos a cargar el juego con su genero a la base de datos. Tambien podremos verlo ejecutando el paso anterior nuevamente</h4> 
+    <h2>Navegación Rápida</h2>
+    <ul>
+        <li><a href="{% url 'agregar_juego' %}">Ir al Formulario de Carga de Juego</a></li>
+        <li><a href="{% url 'lista_juegos' %}">Ver la Lista de Juegos Guardados</a></li>
+        <li><a href="/admin/">Acceder al Administrador de Django</a> (Requiere Superusuario)</li>
+    </ul>
+{% endblock content %}

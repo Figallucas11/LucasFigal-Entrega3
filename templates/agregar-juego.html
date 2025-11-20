@@ -1,4 +1,17 @@
-<h1>se agrego el juego con el genero {{juego1.genero}} y el nombre  {{juego1.nombre}}</h1>
+{% extends 'base.html' %} 
 
-<h2>Para acceder a la lista de juegos: introduzca la url http://127.0.0.1:8000/lista/</h2>
-  <h4>De esta forma, vamos a poder visualizar todos los juegos que se crearon previamente y los que se agregaron en esta sesion a la base de datos.</h4>  
+{% block title %}
+    Subir Nuevo Juego
+{% endblock title %}
+
+{% block content %}
+    <h2>Formulario de Carga de Juego</h2>
+    
+    <form method="post"> 
+        {% csrf_token %} 
+        
+        {{ form.as_p }} 
+        
+        <button type="submit">Guardar Juego</button>
+    </form>
+{% endblock content %}
