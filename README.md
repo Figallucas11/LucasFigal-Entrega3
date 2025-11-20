@@ -2,39 +2,40 @@
 
 ## 🛠️ Pasos de Configuración
 
+Este proyecto utiliza el framework Django y una base de datos SQLite para gestionar datos de videojuegos, consolas y empresas de videojuegos.
+
 1.  **Clonar el repositorio.**
-    
-2.  **Crear y activar el entorno virtual.** (revisar el archivo `requirements.txt`).
-    
-3.  **Realizar Migraciones.**
-    
-4.  **(Opcional) Crear Superusuario.** 
-    
-5.  **Ejecutar el servidor local.**
-    
+
+2.  **Crear y activar el entorno virtual** (revisar el archivo `requirements.txt` si es necesario instalar dependencias).
+
+3.  **Realizar Migraciones:** Asegurarse de que la base de datos esté actualizada con los modelos
+
+4.  **(Opcional) Crear Superusuario:** Para verificar los datos a través del Administrador de Django
+
+5.  **Ejecutar el servidor local:**
+
     El proyecto debería estar disponible en `http://127.0.0.1:8000/`.
 
 ---
 
-## 💻 Uso de la Aplicación (Sistema de Formularios Funcional)
+## 💻 Uso de la Aplicación y Funcionalidades
 
-Se trata de una aplicación Django que registra una lista de juegos (Nombre y Género) en una base de datos SQLite.
+El proyecto implementa la inserción de datos a través de **tres formularios ModelForm** (uno por cada modelo) y una función de **búsqueda** que utiliza parámetros GET.
 
-**La funcionalidad central de esta entrega es la lógica de subir datos mediante un Formulario (POST), no por parámetros de URL.**
+### 🗺️ Puntos de Acceso y Funcionalidades
 
-### 🗺️ Rutas y Funcionalidades Principales
-
-| Ruta URL | Nombre de la Vista | Funcionalidad |
+| Ruta URL | Nombre de la Vista | Requisito Cumplido |
 | :--- | :--- | :--- |
-| **`/`** | `views.inicio` | Página de bienvenida con enlaces de navegación. |
-| **`/agregar/`** | `views.crear_juego` | **Formulario de Carga:** Permite introducir y subir un nuevo juego a la base de datos mediante un formulario web. |
-| **`/lista/`** | `views.lista_juegos` | **Visualización:** Muestra todos los juegos listados hasta el momento en la base de datos. |
+| **`/`** | `views.inicio` |✅ Índice completo de navegación. |
+| **`/agregar-juego/`** | `views.crear_juego` | ✅ Formulario de Inserción (Modelo Juego). |
+| **`/agregar-consola/`** | `views.crear_consola` | ✅ Formulario de Inserción (Modelo Consola). |
+| **`/agregar-empresa/`** | `views.crear_empresa` | ✅ Formulario de Inserción (Modelo Empresa). |
+| **`/buscar/`** | `views.buscar_juego` | ✅ Formulario/Lógica de Búsqueda. |
+| **`/lista/`** | `views.lista_juegos` |✅ Listado de datos guardados. |
 
-### Pasos de Prueba
+### Pasos de Prueba (Orden de Prueba Recomendado)
 
-1.  Acceder a la URL de carga: `http://127.0.0.1:8000/agregar/`.
-2.  Introducir un **Nombre** y **Género** en el formulario.
-3.  Al hacer clic en **"Guardar Juego"**, la aplicación guarda el dato y redirige automáticamente a la URL `/lista/`.
-4.  Los datos también pueden ser verificados en el Administrador de Django (`http://127.0.0.1:8000/admin/`).
-
----
+1.  **Inserción:** Acceder a las rutas `/agregar-juego/`, `/agregar-consola/`, y `/agregar-empresa/`. Llenar y enviar los formularios.
+2.  **Verificación Post-Inserción:** Después de guardar, la aplicación **redirige automáticamente** al listado correspondiente (e.g., al guardar un juego, redirige a `/lista/`).
+3.  **Búsqueda:** Acceder a la ruta `/buscar/` y probar la búsqueda por nombre parcial o completo de los Juegos que se acaban de guardar.
+4.  **Verificación Avanzada:** Acceder al Administrador de Django (`http://127.0.0.1:8000/admin/`) para verificar la integridad de los datos en los tres modelos creados.
