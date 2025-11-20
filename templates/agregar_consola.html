@@ -1,0 +1,11 @@
+<h2>Formulario de Carga de Consola</h2>
+
+<form method="post"> 
+    {% csrf_token %} 
+    
+    {{ form.as_p }} 
+    
+    <button type="submit">Guardar Consola</button>
+</form>
+
+<a href="{% url 'inicio' %}">Volver al Inicio</a>

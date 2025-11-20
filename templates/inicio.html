@@ -1,22 +1,58 @@
-{% extends 'base.html' %} 
+<h1>¡Bienvenido a la Aplicación de Videojuegos!</h1>
 
-{% block title %}Inicio{% endblock title %}
+<p>
+    Esta aplicación implementa Django para gestionar tres modelos (Juego, Consola, Empresa). 
+    Todas las funcionalidades requeridas (inserción y búsqueda) están disponibles a continuación.
+</p>
 
-{% block content %}
-    <h1>¡Bienvenido a la Aplicación de Videojuegos!</h1>
-    
-    <p>Esta aplicación demuestra la capacidad de:</p>
-    <ul>
-        <li><strong>Crear modelos</strong> (Juego, Consola, Empresa).</li>
-        <li>Implementar lógica de <strong>Formularios ModelForm</strong>.</li>
-        <li>Guardar datos en la base de datos a través de una vista (POST).</li>
-        <li>Consultar y listar todos los datos guardados.</li>
-    </ul>
+<h2>⚙️ Funcionalidades Requeridas (Inserción y Búsqueda)</h2>
 
-    <h2>Navegación Rápida</h2>
-    <ul>
-        <li><a href="{% url 'agregar_juego' %}">Ir al Formulario de Carga de Juego</a></li>
-        <li><a href="{% url 'lista_juegos' %}">Ver la Lista de Juegos Guardados</a></li>
-        <li><a href="/admin/">Acceder al Administrador de Django</a> (Requiere Superusuario)</li>
-    </ul>
-{% endblock content %}
+<h3>1. Inserción de Datos (Formularios POST)</h3>
+<ul>
+    <li>
+        <strong>Juego:</strong> 
+        <a href="{% url 'agregar_juego' %}">Cargar un Juego Nuevo</a>
+    </li>
+    <li>
+        <strong>Consola:</strong> 
+        <a href="{% url 'agregar_consola' %}">Cargar una Consola Nueva</a>
+    </li>
+    <li>
+        <strong>Empresa:</strong> 
+        <a href="{% url 'agregar_empresa' %}">Cargar una Empresa Nueva</a>
+    </li>
+</ul>
+
+<h3>2. Búsqueda de Datos</h3>
+<ul>
+    <li>
+        <strong>Buscar Juego:</strong> 
+        <a href="{% url 'buscar_juego' %}">Ir al Formulario de Búsqueda</a>
+    </li>
+</ul>
+
+<hr>
+
+<h2>📋 Listados (Verificación de Datos)</h2>
+<p>
+    Use estos enlaces para verificar que los datos insertados se hayan guardado correctamente en la base de datos.
+</p>
+<ul>
+    <li>
+        <a href="{% url 'lista_juegos' %}">Ver Lista de Juegos</a>
+    </li>
+    <li>
+        <a href="{% url 'lista_consolas' %}">Ver Lista de Consolas</a>
+    </li>
+    <li>
+        <a href="{% url 'lista_empresas' %}">Ver Lista de Empresas</a>
+    </li>
+</ul>
+
+<hr>
+
+<h2>🔒 Panel de Administración</h2>
+<p>
+    El Administrador de Django puede ser usado para la verificación directa de los Modelos y datos.
+</p>
+<a href="/admin/">Acceder al Administrador (Requiere Superusuario)</a>

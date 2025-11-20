@@ -1,0 +1,17 @@
+<h2>Empresas Guardadas</h2>
+
+{% if empresas %}
+    <ul>
+    {% for empresa in empresas %}
+        <li>
+            Nombre: {{ empresa.nombre }} 
+            (País de Origen: {{ empresa.pais }})
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No se han guardado empresas aún.</p>
+{% endif %}
+
+<a href="{% url 'agregar_empresa' %}">Agregar otra Empresa</a>
+<a href="{% url 'inicio' %}">Volver al Inicio</a>

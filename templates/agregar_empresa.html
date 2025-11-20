@@ -1,0 +1,11 @@
+<h2>Formulario de Carga de Empresa</h2>
+
+<form method="post"> 
+    {% csrf_token %} 
+    
+    {{ form.as_p }} 
+    
+    <button type="submit">Guardar Empresa</button>
+</form>
+
+<a href="{% url 'inicio' %}">Volver al Inicio</a>

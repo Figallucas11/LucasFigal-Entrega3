@@ -1,0 +1,29 @@
+<h2>Búsqueda de Juegos</h2>
+<p>Busque un juego por parte de su nombre.</p>
+
+<form method="get"> 
+    {% csrf_token %} 
+    
+    <label for="id_busqueda">Nombre a Buscar:</label>
+    <input type="text" id="id_busqueda" name="busqueda" value="{{ termino_buscado|default:'' }}">
+    
+    <button type="submit">Buscar</button>
+</form>
+
+<hr>
+
+<h3>Resultados:</h3>
+
+{% if resultados %}
+    <ul>
+    {% for juego in resultados %}
+        <li>{{ juego.nombre }} (Género: {{ juego.genero }})</li>
+    {% endfor %}
+    </ul>
+{% elif termino_buscado %}
+    <p>No se encontraron juegos que coincidan con "{{ termino_buscado }}".</p>
+{% else %}
+    <p>Introduzca un término y presione Buscar.</p>
+{% endif %}
+
+<a href="{% url 'inicio' %}">Volver al Inicio</a>
