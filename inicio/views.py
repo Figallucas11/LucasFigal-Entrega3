@@ -71,6 +71,27 @@ def buscar_juego(request):
         
     return render(request, 'buscar_juego.html', {'resultados': resultados, 'termino_buscado': busqueda})
 
+def buscar_consola(request):
+    busqueda = request.GET.get('busqueda', None)
+    
+    if busqueda:
+        resultados = Consola.objects.filter(nombre__icontains=busqueda)
+    else:
+        resultados = []
+        
+    return render(request, 'buscar_consola.html', {'consolas': resultados, 'termino_buscado': busqueda})
+
+
+def buscar_empresa(request):
+    busqueda = request.GET.get('busqueda', None)
+    
+    if busqueda:
+        resultados = Empresa.objects.filter(nombre__icontains=busqueda)
+    else:
+        resultados = []
+        
+    return render(request, 'buscar_empresa.html', {'empresas': resultados, 'termino_buscado': busqueda})
+
 # --- EMPRESA ---
 
 # VISTA DE DETALLE

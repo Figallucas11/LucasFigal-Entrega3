@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+
+{% block title %}Búsqueda de Consolas{% endblock title %}
+
+{% block content %}
+    <h2>Búsqueda de Consolas</h2>
+    <p>Busque una consola usando el nombre.</p>
+
+    <form method="get" action="{% url 'buscar_consola' %}"> 
+        {% csrf_token %} 
+        
+        <label for="id_busqueda">Nombre a Buscar:</label>
+        <input type="text" id="id_busqueda" name="busqueda" value="{{ termino_buscado|default:'' }}">
+        
+        <button type="submit">Buscar</button>
+    </form>
+
+    <hr>
+
+    <h3>Resultados:</h3>
+
+    {% if resultados %}
+        <ul>
+        {% for consola in resultados %}
+            <li>
+                {{ consola.nombre }} (Lanzamiento: {{ consola.lanzamiento }}) 
+                | <a href="{% url 'ver_consola' consola.pk %}">Ver</a>
+                | <a href="{% url 'actualizar_consola' consola.pk %}">Actualizar</a>
+                | <a href="{% url 'eliminar_consola' consola.pk %}">Eliminar</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% elif termino_buscado %}
+        <p>No se encontraron consolas que coincidan con "{{ termino_buscado }}".</p>
+    {% else %}
+        <p>Introduzca un término y presione Buscar.</p>
+    {% endif %}
+
+{% endblock content %}
