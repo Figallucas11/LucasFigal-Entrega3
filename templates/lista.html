@@ -6,9 +6,9 @@
     <h2>Juegos Guardados</h2>
     
     {% if juegos %}
-        <ul class="list-group">
+        <ul>
             {% for juego in juegos %} 
-                <li class="list-group-item">
+                <li>
                     <h5>Nombre: {{ juego.nombre }}</h5>
                     <p>Género: {{ juego.genero }}</p>
                 </li>

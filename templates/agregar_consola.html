@@ -1,11 +1,16 @@
-<h2>Formulario de Carga de Consola</h2>
+{% extends 'base.html' %} 
 
-<form method="post"> 
-    {% csrf_token %} 
-    
-    {{ form.as_p }} 
-    
-    <button type="submit">Guardar Consola</button>
-</form>
+{% block title %}Cargar Consola{% endblock title %}
 
-<a href="{% url 'inicio' %}">Volver al Inicio</a>
+{% block content %}
+    <h2>Formulario de Carga de Consola</h2>
+
+    <form method="post"> 
+        {% csrf_token %} 
+        
+        {{ form.as_p }} 
+        
+        <button type="submit">Guardar Consola</button>
+    </form>
+
+{% endblock content %}

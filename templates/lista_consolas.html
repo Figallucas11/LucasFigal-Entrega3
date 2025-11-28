@@ -1,16 +1,24 @@
-<h2>Consolas Guardadas</h2>
+{% extends 'base.html' %} 
 
-{% if consolas %}
-    <ul>
-    {% for consola in consolas %}
-        <li>
-            Nombre: {{ consola.nombre }} 
-            (Año de Lanzamiento: {{ consola.lanzamiento }}) 
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No se han guardado consolas aún.</p>
-{% endif %}
+{% block title %}Lista de Consolas{% endblock title %}
 
-<a href="{% url 'agregar_consola' %}">Agregar otra Consola</a> <a href="{% url 'inicio' %}">Volver al Inicio</a>
+{% block content %}
+    <h2>Consolas Guardadas</h2>
+
+    {% if consolas %}
+        <ul>
+        {% for consola in consolas %}
+            <li>
+                Nombre: {{ consola.nombre }} 
+                (Año de Lanzamiento: {{ consola.lanzamiento }}) 
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se han guardado consolas aún.</p>
+    {% endif %}
+    <p>
+        <a href="{% url 'agregar_consola' %}">Agregar otra Consola</a> | 
+        <a href="{% url 'inicio' %}">Volver al Inicio</a>
+    </p>
+{% endblock content %}

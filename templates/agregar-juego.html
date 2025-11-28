@@ -1,12 +1,9 @@
 {% extends 'base.html' %} 
 
-{% block title %}
-    Subir Nuevo Juego
-{% endblock title %}
+{% block title %}Subir Nuevo Juego{% endblock title %}
 
 {% block content %}
-    <h2>Formulario de Carga de Juego</h2>
-    
+    <h2>Cargar Nuevo Juego</h2>
     <form method="post"> 
         {% csrf_token %} 
         

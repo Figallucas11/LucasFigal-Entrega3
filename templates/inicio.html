@@ -1,58 +1,64 @@
-<h1>¡Bienvenido a la Aplicación de Videojuegos!</h1>
+{% extends 'base.html' %}
 
-<p>
-    Esta aplicación implementa Django para gestionar tres modelos (Juego, Consola, Empresa). 
-    Todas las funcionalidades requeridas (inserción y búsqueda) están disponibles a continuación.
-</p>
+{% block title %}Inicio - Aplicación de Videojuegos{% endblock title %}
 
-<h2>⚙️ Funcionalidades Requeridas (Inserción y Búsqueda)</h2>
+{% block content %}
+    <h1>¡Bienvenido a la Aplicación de Videojuegos!</h1>
 
-<h3>1. Inserción de Datos (Formularios POST)</h3>
-<ul>
-    <li>
-        <strong>Juego:</strong> 
-        <a href="{% url 'agregar_juego' %}">Cargar un Juego Nuevo</a>
-    </li>
-    <li>
-        <strong>Consola:</strong> 
-        <a href="{% url 'agregar_consola' %}">Cargar una Consola Nueva</a>
-    </li>
-    <li>
-        <strong>Empresa:</strong> 
-        <a href="{% url 'agregar_empresa' %}">Cargar una Empresa Nueva</a>
-    </li>
-</ul>
+    <p>
+        Esta aplicación implementa Django para gestionar tres modelos (Juego, Consola, Empresa). 
+        Todas las funcionalidades requeridas (inserción y búsqueda) están disponibles a continuación.
+    </p>
 
-<h3>2. Búsqueda de Datos</h3>
-<ul>
-    <li>
-        <strong>Buscar Juego:</strong> 
-        <a href="{% url 'buscar_juego' %}">Ir al Formulario de Búsqueda</a>
-    </li>
-</ul>
+    <h2>⚙️ Funcionalidades Requeridas (Inserción y Búsqueda)</h2>
 
-<hr>
+    <h3>1. Inserción de Datos (Formularios POST)</h3>
+    <ul>
+        <li>
+            <strong>Juego:</strong> 
+            <a href="{% url 'agregar_juego' %}">Cargar un Juego Nuevo</a>
+        </li>
+        <li>
+            <strong>Consola:</strong> 
+            <a href="{% url 'agregar_consola' %}">Cargar una Consola Nueva</a>
+        </li>
+        <li>
+            <strong>Empresa:</strong> 
+            <a href="{% url 'agregar_empresa' %}">Cargar una Empresa Nueva</a>
+        </li>
+    </ul>
 
-<h2>📋 Listados (Verificación de Datos)</h2>
-<p>
-    Use estos enlaces para verificar que los datos insertados se hayan guardado correctamente en la base de datos.
-</p>
-<ul>
-    <li>
-        <a href="{% url 'lista_juegos' %}">Ver Lista de Juegos</a>
-    </li>
-    <li>
-        <a href="{% url 'lista_consolas' %}">Ver Lista de Consolas</a>
-    </li>
-    <li>
-        <a href="{% url 'lista_empresas' %}">Ver Lista de Empresas</a>
-    </li>
-</ul>
+    <h3>2. Búsqueda de Datos</h3>
+    <ul>
+        <li>
+            <strong>Buscar Juego:</strong> 
+            <a href="{% url 'buscar_juego' %}">Ir al Formulario de Búsqueda</a>
+        </li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h2>🔒 Panel de Administración</h2>
-<p>
-    El Administrador de Django puede ser usado para la verificación directa de los Modelos y datos.
-</p>
-<a href="/admin/">Acceder al Administrador (Requiere Superusuario)</a>
+    <h2>📋 Listados (Verificación de Datos)</h2>
+    <p>
+        Use estos enlaces para verificar que los datos insertados se hayan guardado correctamente en la base de datos.
+    </p>
+    <ul>
+        <li>
+            <a href="{% url 'lista_juegos' %}">Ver Lista de Juegos</a>
+        </li>
+        <li>
+            <a href="{% url 'lista_consolas' %}">Ver Lista de Consolas</a>
+        </li>
+        <li>
+            <a href="{% url 'lista_empresas' %}">Ver Lista de Empresas</a>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>🔒 Panel de Administración</h2>
+    <p>
+        El Administrador de Django puede ser usado para la verificación directa de los Modelos y datos.
+    </p>
+    <a href="/admin/">Acceder al Administrador (Requiere Superusuario)</a>
+{% endblock content %}
