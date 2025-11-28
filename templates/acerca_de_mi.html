@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Acerca de Mí y el Proyecto{% endblock title %}
+
+{% block content %}
+    <h2>Acerca del Desarrollador y el Proyecto</h2>
+    
+    <hr>
+    
+    <h3>Información del Proyecto</h3>
+    <p>
+        Esta aplicación web, desarrollada con Django y Python, es la entrega final de Lucas Figal. Su propósito es simular un sistema completo de gestión de datos, enfocado en una colección de videojuegos.
+    </p>
+    
+    <hr>
+
+    <h3>El Desarrollador</h3>
+    <p>
+        Mi nombre es Lucas Figal. Soy de Lanús, Buenos Aires. A la vez que trabajo en este proyecto, estoy realizando los cursos de Data Science 1 y SQL para meterme en el mundo de los datos, para luego estudiar machine learning y la inteligencia artificial.
+    </p>
+    
+    <p>
+        <a href="{% url 'inicio' %}">Volver al Inicio</a>
+    </p>
+{% endblock content %}

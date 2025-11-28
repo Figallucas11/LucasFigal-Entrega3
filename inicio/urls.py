@@ -19,6 +19,7 @@ from inicio.views import (
     VerConsola,           
     ActualizarConsola,
     EliminarConsola,
+    acerca_de_mi
 )
 urlpatterns = [
     path('', inicio, name='inicio'),
@@ -40,4 +41,5 @@ urlpatterns = [
     path('ver-consola/<int:pk>/', VerConsola.as_view(), name='ver_consola'),
     path('actualizar-consola/<int:pk>/', ActualizarConsola.as_view(), name='actualizar_consola'),
     path('eliminar-consola/<int:pk>/', EliminarConsola.as_view(), name='eliminar_consola'),
+    path('acerca-de-mi/',acerca_de_mi, name='acerca_de_mi'),
 ]

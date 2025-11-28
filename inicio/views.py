@@ -169,3 +169,6 @@ class EliminarConsola(LoginRequiredMixin, DeleteView):
     model = Consola
     template_name = 'borrar_consola.html'
     success_url = reverse_lazy('lista_consolas')
+
+def acerca_de_mi(request):
+    return render(request, 'acerca_de_mi.html', {})

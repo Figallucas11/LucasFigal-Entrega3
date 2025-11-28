@@ -1,41 +1,50 @@
-# 🚀 Pre-Entrega N°3 - Lucas Figal
+# 🎮 Proyecto Final - Colección de Videojuegos (Lucas Figal)
 
 ## 🛠️ Pasos de Configuración
 
-Este proyecto utiliza el framework Django y una base de datos SQLite para gestionar datos de videojuegos, consolas y empresas de videojuegos.
+Este proyecto utiliza el framework **Django** y una base de datos **SQLite** para gestionar datos de videojuegos, consolas y empresas, con las siguientes configuraciones:
 
-1.  **Clonar el repositorio.**
+1. **Clonar el repositorio.**
 
-2.  **Crear y activar el entorno virtual** (revisar el archivo `requirements.txt` si es necesario instalar dependencias).
+2. **Crear y activar el entorno virtual** (revisar el archivo `requirements.txt` si es necesario instalar dependencias).
 
-3.  **Realizar Migraciones:** Asegurarse de que la base de datos esté actualizada con los modelos
+3. **Realizar Migraciones:** Asegurarse de que la base de datos esté actualizada con los modelos.
 
-4.  **(Opcional) Crear Superusuario:** Para verificar los datos a través del Administrador de Django
+4. **Crear Superusuario:** Para acceder al administrador y gestionar datos de usuarios.
 
-5.  **Ejecutar el servidor local:**
+5. **Ejecutar el servidor local:**
 
-    El proyecto debería estar disponible en `http://127.0.0.1:8000/`.
-
----
+El proyecto debería estar disponible en `http://127.0.0.1:8000/`.
 
 ## 💻 Uso de la Aplicación y Funcionalidades
 
-El proyecto implementa la inserción de datos a través de **tres formularios ModelForm** (uno por cada modelo) y una función de **búsqueda** que utiliza parámetros GET.
+El proyecto implementa un sistema completo de **Autenticación** y **CRUD** (Crear, Leer, Actualizar, Eliminar) para los tres modelos principales.
 
 ### 🗺️ Puntos de Acceso y Funcionalidades
 
-| Ruta URL | Nombre de la Vista | Requisito Cumplido |
+| Ruta URL | Nombre de la Vista | Funcionalidad Clave |
 | :--- | :--- | :--- |
-| **`/`** | `views.inicio` |✅ Índice completo de navegación. |
-| **`/agregar-juego/`** | `views.crear_juego` | ✅ Formulario de Inserción (Modelo Juego). |
-| **`/agregar-consola/`** | `views.crear_consola` | ✅ Formulario de Inserción (Modelo Consola). |
-| **`/agregar-empresa/`** | `views.crear_empresa` | ✅ Formulario de Inserción (Modelo Empresa). |
-| **`/buscar/`** | `views.buscar_juego` | ✅ Formulario/Lógica de Búsqueda. |
-| **`/lista/`** | `views.lista_juegos` |✅ Listado de datos guardados. |
+| **`/`** | `views.inicio` | ✅ Índice principal y enlaces de navegación. |
+| **`/usuarios/registro/`** | `RegistroUsuarioView` | ✅ Creación de nuevos usuarios (Autenticación). |
+| **`/juegos/lista/**` | `views.lista_juegos` | ✅ Listado, Búsqueda y Mensaje de Aviso. |
+| **`/juegos/agregar/**` | `views.crear_juego` | ✅ Creación de registros (Formulario ModelForm). |
+| **`/juegos/detalle/<pk>/`** | `JuegoDetalle` | ✅ Detalle y acceso a edición/eliminación. |
+| **`/acerca-de-mi/**` | `views.acerca_de_mi` | ✅ Contenido estático del autor/proyecto. |
 
-### Pasos de Prueba (Orden de Prueba Recomendado)
+### 📋 Pasos de Prueba (Orden de Prueba Recomendado para la Demostración)
 
-1.  **Inserción:** Acceder a las rutas `/agregar-juego/`, `/agregar-consola/`, y `/agregar-empresa/`. Llenar y enviar los formularios.
-2.  **Verificación Post-Inserción:** Después de guardar, la aplicación **redirige automáticamente** al listado correspondiente (e.g., al guardar un juego, redirige a `/lista/`).
-3.  **Búsqueda:** Acceder a la ruta `/buscar/` y probar la búsqueda por nombre parcial o completo de los Juegos que se acaban de guardar.
-4.  **Verificación Avanzada:** Acceder al Administrador de Django (`http://127.0.0.1:8000/admin/`) para verificar la integridad de los datos en los tres modelos creados.
+1. **Autenticación:**
+    * Registrar un nuevo usuario en `/usuarios/registro/`.
+    * Iniciar sesión y cerrar sesión.
+
+2. **CRUD Completo:**
+    * Acceder a `/juegos/agregar/` y crear un nuevo juego, incluyendo una imagen (MEDIA).
+    * Verificar que el listado se actualice.
+    * Acceder al detalle del juego, luego **Editar** y **Eliminar** el registro.
+
+3. **Búsqueda y Filtro:**
+    * Utilizar la función de búsqueda para filtrar la lista de juegos por título.
+    * Verificar que se muestre el "mensaje de aviso" si no hay resultados.
+
+4. **Verificación Final:**
+    * Acceder al Administrador de Django (`http://127.0.0.1:8000/admin/`) para verificar que los modelos de `Juego`, `Consola` y `Empresa` están registrados y que el modelo `User` está funcional.
