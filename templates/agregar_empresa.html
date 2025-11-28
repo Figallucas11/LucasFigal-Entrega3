@@ -8,9 +8,8 @@
     <form method="post"> 
         {% csrf_token %} 
         
-        {{ form.as_p }} 
+        {{ formulario.as_p }} 
         
         <button type="submit">Guardar Empresa</button>
     </form>
-    
 {% endblock content %}

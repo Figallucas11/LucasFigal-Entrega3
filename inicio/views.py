@@ -3,7 +3,7 @@ from .forms import JuegoForm, ConsolaForm, EmpresaForm
 from .models import Juego, Consola, Empresa
 from django.http import HttpResponse
 from django.views.generic import UpdateView, DeleteView, DetailView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
@@ -31,31 +31,44 @@ def crear_juego(request):
         form = JuegoForm()
     return render(request, 'agregar-juego.html', {'form': form})
 
-# VISTA PARA CARGAR UNA CONSOLA
-@login_required
 def crear_consola(request):
-    if request.method == 'POST':
-        form = ConsolaForm(request.POST)
+    if request.method == "POST":
+        form = ConsolaForm(request.POST) 
+        
         if form.is_valid():
-            form.save()
-            return redirect('lista_consolas')
+            
+            nombre = form.cleaned_data.get('nombre')
+            lanzamiento = form.cleaned_data.get('lanzamiento')
+            
+            Consola.objects.create(
+                nombre=nombre,
+                lanzamiento=lanzamiento
+            )
+            
+            return redirect(reverse('lista_consolas'))
+            
     else:
         form = ConsolaForm()
-    
-    return render(request, 'agregar_consola.html', {'form': form})
+        
+    return render(request, 'agregar_consola.html', {'formulario': form})
 
-# VISTA PARA CARGAR UNA EMPRESA
-@login_required
 def crear_empresa(request):
-    if request.method == 'POST':
-        form = EmpresaForm(request.POST)
+    if request.method == "POST":
+        form = EmpresaForm(request.POST) 
+        
         if form.is_valid():
-            form.save()
-            return redirect('lista_empresas')
+            nombre = form.cleaned_data.get('nombre') 
+            pais = form.cleaned_data.get('pais') 
+
+            Empresa.objects.create(
+                nombre=nombre,
+                pais=pais,
+            )
+            return redirect(reverse('lista_empresas'))
     else:
         form = EmpresaForm()
-        
-    return render(request, 'agregar_empresa.html', {'form': form})
+    
+    return render(request, 'agregar_empresa.html', {'formulario': form})
 
 
 # VISTA PARA VER LA LISTA DE JUEGOS
