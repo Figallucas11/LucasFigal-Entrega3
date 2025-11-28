@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import JuegoForm, ConsolaForm, EmpresaForm
 from .models import Juego, Consola, Empresa
+from django.http import HttpResponse
+from django.views.generic import UpdateView, DeleteView, DetailView
+from django.urls import reverse_lazy
 
 # VISTA PARA EL INICIO
 def inicio(request):
@@ -64,6 +67,71 @@ def buscar_juego(request):
     if busqueda:
         resultados = Juego.objects.filter(nombre__icontains=busqueda)
     else:
-        resultados = [] # Muestra lista vacía si no hay búsqueda
+        resultados = []
         
     return render(request, 'buscar_juego.html', {'resultados': resultados, 'termino_buscado': busqueda})
+
+# --- EMPRESA ---
+
+# VISTA DE DETALLE
+class VerEmpresa(DetailView):
+    model = Empresa
+    template_name = 'detalle_empresa.html'
+    context_object_name = 'empresa' 
+
+# VISTA DE EDICIÓN
+class ActualizarEmpresa(UpdateView):
+    model = Empresa
+    template_name = 'editar_empresa.html' 
+    fields = '__all__'
+    success_url = reverse_lazy('lista_empresas')
+
+# VISTA DE ELIMINACIÓN
+class EliminarEmpresa(DeleteView):
+    model = Empresa
+    template_name = 'borrar_empresa.html'
+    success_url = reverse_lazy('lista_empresas')
+
+
+# --- JUEGO ---
+
+# VISTA DE DETALLE
+class VerJuego(DetailView):
+    model = Juego
+    template_name = 'detalle_juego.html'
+    context_object_name = 'juego'
+
+# VISTA DE EDICIÓN
+class ActualizarJuego(UpdateView):
+    model = Juego
+    template_name = 'editar_juego.html'
+    fields = '__all__'
+    success_url = reverse_lazy('lista_juegos')
+
+# VISTA DE ELIMINACIÓN
+class EliminarJuego(DeleteView):
+    model = Juego
+    template_name = 'borrar_juego.html'
+    success_url = reverse_lazy('lista_juegos')
+
+
+# --- CONSOLA ---
+
+# VISTA DE DETALLE
+class VerConsola(DetailView):
+    model = Consola
+    template_name = 'detalle_consola.html'
+    context_object_name = 'consola'
+
+# VISTA DE EDICIÓN
+class ActualizarConsola(UpdateView):
+    model = Consola
+    template_name = 'editar_consola.html'
+    fields = '__all__'
+    success_url = reverse_lazy('lista_consolas')
+
+# VISTA DE ELIMINACIÓN
+class EliminarConsola(DeleteView):
+    model = Consola
+    template_name = 'borrar_consola.html'
+    success_url = reverse_lazy('lista_consolas')

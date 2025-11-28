@@ -10,12 +10,19 @@
             {% for juego in juegos %} 
                 <li>
                     <h5>Nombre: {{ juego.nombre }}</h5>
-                    <p>Género: {{ juego.genero }}</p>
+                    <p>Género: {{ juego.genero }}
+                        
+                        | <a href="{% url 'ver_juego' juego.pk %}">Ver</a> 
+                        | <a href="{% url 'actualizar_juego' juego.pk %}">Editar</a> 
+                        | <a href="{% url 'eliminar_juego' juego.pk %}">Eliminar</a>
+                    </p>
                 </li>
             {% endfor %}
         </ul>
     {% else %}
         <p>Aún no has agregado ningún juego. <a href="{% url 'agregar_juego' %}">¡Crea el primero!</a></p>
     {% endif %}
+
+    <p><a href="{% url 'inicio' %}">Volver al Inicio</a></p>
 
 {% endblock content %}

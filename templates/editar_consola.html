@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Consola{% endblock title %}
+
+{% block content %}
+    <h2>Actualizar Consola: {{ object.nombre }}</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <input type="submit" value="Guardar Cambios">
+    </form>
+    
+    <p><a href="{% url 'lista_consolas' %}" class="btn btn-secondary mt-3">Cancelar y Volver al Listado</a></p>
+{% endblock content %}

@@ -11,6 +11,10 @@
             <li>
                 Nombre: {{ empresa.nombre }} 
                 (País de Origen: {{ empresa.pais }})
+            
+                | <a href="{% url 'ver_empresa' empresa.pk %}">Ver</a> 
+                | <a href="{% url 'actualizar_empresa' empresa.pk %}">Editar</a> 
+                | <a href="{% url 'eliminar_empresa' empresa.pk %}">Eliminar</a>
             </li>
         {% endfor %}
         </ul>

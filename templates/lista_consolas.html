@@ -11,12 +11,17 @@
             <li>
                 Nombre: {{ consola.nombre }} 
                 (Año de Lanzamiento: {{ consola.lanzamiento }}) 
+
+                | <a href="{% url 'ver_consola' consola.pk %}">Ver</a> 
+                | <a href="{% url 'actualizar_consola' consola.pk %}">Editar</a> 
+                | <a href="{% url 'eliminar_consola' consola.pk %}">Eliminar</a>
             </li>
         {% endfor %}
         </ul>
     {% else %}
         <p>No se han guardado consolas aún.</p>
     {% endif %}
+
     <p>
         <a href="{% url 'agregar_consola' %}">Agregar otra Consola</a> | 
         <a href="{% url 'inicio' %}">Volver al Inicio</a>

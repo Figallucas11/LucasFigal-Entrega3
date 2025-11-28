@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Juego{% endblock title %}
+
+{% block content %}
+    <h2>Confirmar Eliminación de Juego</h2>
+    
+    <p>
+        ¿Está seguro de que desea eliminar el juego: 
+        <strong>{{ object.nombre }}</strong>?
+    </p>
+    <p>Esta acción es irreversible.</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Sí, Eliminar">
+        <a href="{% url 'lista_juegos' %}" class="btn btn-secondary">No, Cancelar</a>
+    </form>
+{% endblock content %}
