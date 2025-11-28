@@ -11,6 +11,19 @@
             <a href="{% url 'inicio' %}">Inicio</a> | 
             <a href="{% url 'crear_juego' %}">Agregar Juego</a> | 
             <a href="{% url 'lista_juegos' %}">Ver Lista</a>
+
+           {% if user.is_authenticated %}
+    <a href="#">{{ user.username }}</a>
+
+    <form action="{% url 'cerrar_sesion' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="submit" value="Cerrar Sesion" class="btn btn-danger btn-sm">
+    </form>
+{% else %}
+    <a href="{% url 'iniciar_sesion' %}" class="btn btn-primary btn-sm">Iniciar Sesion</a>
+    <a href="{% url 'registro' %}" class="btn btn-primary btn-sm">Registrarse</a>
+    
+{% endif %}
         </nav>
         <hr>
     </header>

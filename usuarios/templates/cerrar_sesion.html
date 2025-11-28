@@ -1,0 +1,13 @@
+{% extends "base.html" %} 
+
+{% block title_head %}Cerrar Sesión{% endblock title_head %}
+
+{# ¡LA CORRECCIÓN ES AQUÍ! Cambiar 'contenido' por 'content' para que base.html lo reconozca #}
+{% block content %} 
+    <div class="container text-center py-5">
+        <h1 class="text-success display-4 mb-4">¡Cerraste sesión correctamente!</h1>
+        <p class="lead">Gracias por usar la aplicación. Puedes volver a iniciar sesión cuando quieras.</p>
+        <a href="{% url 'iniciar_sesion' %}" class="btn btn-primary mt-3">Iniciar Sesión de Nuevo</a>
+        <a href="{% url 'inicio' %}" class="btn btn-secondary mt-3">Ir a la Página Principal</a>
+    </div>
+{% endblock content %}

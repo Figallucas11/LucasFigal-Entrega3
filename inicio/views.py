@@ -4,12 +4,15 @@ from .models import Juego, Consola, Empresa
 from django.http import HttpResponse
 from django.views.generic import UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # VISTA PARA EL INICIO
 def inicio(request):
     return render(request, 'inicio.html')
 
 # VISTA PARA CARGAR UN JUEGO 
+@login_required
 def crear_juego(request):
     if request.method == 'POST':
         form = JuegoForm(request.POST)
@@ -21,6 +24,7 @@ def crear_juego(request):
     return render(request, 'agregar-juego.html', {'form': form})
 
 # VISTA PARA CARGAR UNA CONSOLA
+@login_required
 def crear_consola(request):
     if request.method == 'POST':
         form = ConsolaForm(request.POST)
@@ -33,6 +37,7 @@ def crear_consola(request):
     return render(request, 'agregar_consola.html', {'form': form})
 
 # VISTA PARA CARGAR UNA EMPRESA
+@login_required
 def crear_empresa(request):
     if request.method == 'POST':
         form = EmpresaForm(request.POST)
@@ -101,14 +106,14 @@ class VerEmpresa(DetailView):
     context_object_name = 'empresa' 
 
 # VISTA DE EDICIÓN
-class ActualizarEmpresa(UpdateView):
+class ActualizarEmpresa(LoginRequiredMixin, UpdateView):
     model = Empresa
     template_name = 'editar_empresa.html' 
     fields = '__all__'
     success_url = reverse_lazy('lista_empresas')
 
 # VISTA DE ELIMINACIÓN
-class EliminarEmpresa(DeleteView):
+class EliminarEmpresa(LoginRequiredMixin, DeleteView):
     model = Empresa
     template_name = 'borrar_empresa.html'
     success_url = reverse_lazy('lista_empresas')
@@ -123,14 +128,14 @@ class VerJuego(DetailView):
     context_object_name = 'juego'
 
 # VISTA DE EDICIÓN
-class ActualizarJuego(UpdateView):
+class ActualizarJuego( LoginRequiredMixin, UpdateView):
     model = Juego
     template_name = 'editar_juego.html'
     fields = '__all__'
     success_url = reverse_lazy('lista_juegos')
 
 # VISTA DE ELIMINACIÓN
-class EliminarJuego(DeleteView):
+class EliminarJuego(LoginRequiredMixin, DeleteView):
     model = Juego
     template_name = 'borrar_juego.html'
     success_url = reverse_lazy('lista_juegos')
@@ -145,14 +150,14 @@ class VerConsola(DetailView):
     context_object_name = 'consola'
 
 # VISTA DE EDICIÓN
-class ActualizarConsola(UpdateView):
+class ActualizarConsola(LoginRequiredMixin, UpdateView):
     model = Consola
     template_name = 'editar_consola.html'
     fields = '__all__'
     success_url = reverse_lazy('lista_consolas')
 
 # VISTA DE ELIMINACIÓN
-class EliminarConsola(DeleteView):
+class EliminarConsola(LoginRequiredMixin, DeleteView):
     model = Consola
     template_name = 'borrar_consola.html'
     success_url = reverse_lazy('lista_consolas')
