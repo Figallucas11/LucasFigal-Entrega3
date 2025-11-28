@@ -4,9 +4,7 @@
 
 {% block content %}
     <h2>Detalle de Juego: {{ juego.nombre }}</h2>
-    
-    <ul>
-        <li>
+          <li>
             <strong>Nombre:</strong> {{ juego.nombre }}
         </li>
         <li>
@@ -15,6 +13,15 @@
         <li>
             <strong>ID:</strong> {{ juego.pk }}
         </li>
+    <ul>
+        {% if juego.imagen %}
+            <li>
+                <strong>Imagen:</strong> 
+                <img src="{{ juego.imagen.url }}" alt="Imagen de {{ juego.nombre }}" style="max-width: 300px; height: auto; border-radius: 8px;">
+            </li>
+        {% endif %}
+
+  
     </ul>
 
     <hr>

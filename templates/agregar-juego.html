@@ -1,14 +1,17 @@
 {% extends 'base.html' %} 
 
-{% block title %}Subir Nuevo Juego{% endblock title %}
+{% block title %}Agregar Nuevo Juego{% endblock title %}
 
 {% block content %}
-    <h2>Cargar Nuevo Juego</h2>
-    <form method="post"> 
-        {% csrf_token %} 
+    <h2>Crear Nuevo Juego</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
         
-        {{ form.as_p }} 
+        {{ form.as_p }}
         
-        <button type="submit">Guardar Juego</button>
+        <input type="submit" value="Guardar Juego">
     </form>
+
+    <p class="mt-3"><a href="{% url 'lista_juegos' %}">Volver al listado</a></p>
 {% endblock content %}

@@ -15,9 +15,17 @@ def inicio(request):
 @login_required
 def crear_juego(request):
     if request.method == 'POST':
-        form = JuegoForm(request.POST)
+        form = JuegoForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            nombre = form.cleaned_data.get('nombre')
+            genero = form.cleaned_data.get('genero')
+            imagen = form.cleaned_data.get('imagen') 
+
+            Juego.objects.create(
+                nombre=nombre,
+                genero=genero,
+                imagen=imagen
+            )
             return redirect('lista_juegos') 
     else:
         form = JuegoForm()
