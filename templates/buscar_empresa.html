@@ -6,11 +6,18 @@
     <h2>Búsqueda de Empresas</h2>
     <p>Busque una empresa usando el nombre.</p>
 
+    <!-- Formulario de Búsqueda GET -->
     <form method="get" action="{% url 'buscar_empresa' %}"> 
         {% csrf_token %} 
         
         <label for="id_busqueda">Nombre a Buscar:</label>
-        <input type="text" id="id_busqueda" name="busqueda" value="{{ termino_buscado|default:'' }}">
+        <input 
+            type="text" 
+            id="id_busqueda" 
+            name="busqueda" 
+            value="{{ termino_buscado|default:'' }}"
+            placeholder="Introduzca el nombre de la empresa..."
+        >
         
         <button type="submit">Buscar</button>
     </form>
@@ -20,12 +27,15 @@
     <h3>Resultados:</h3>
 
     {% if resultados %}
+        <p>Se encontraron {{ resultados|length }} empresa(s) que coinciden con "{{ termino_buscado }}":</p>
+        
         <ul>
         {% for empresa in resultados %}
             <li>
                 {{ empresa.nombre }} (País: {{ empresa.pais }})
-                | <a href="{% url 'ver_empresa' empresa.pk %}">Ver</a>
-                | <a href="{% url 'actualizar_empresa' empresa.pk %}">Actualizar</a>
+                
+                | <a href="{% url 'ver_empresa' empresa.pk %}">Ver</a> 
+                | <a href="{% url 'actualizar_empresa' empresa.pk %}">Actualizar</a> 
                 | <a href="{% url 'eliminar_empresa' empresa.pk %}">Eliminar</a>
             </li>
         {% endfor %}

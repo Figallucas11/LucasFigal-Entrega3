@@ -4,7 +4,7 @@
 
 {% block content %}
     <h2>Búsqueda de Consolas</h2>
-    <p>Busque una consola usando el nombre.</p>
+    <p>Busque una consola por parte de su nombre.</p>
 
     <form method="get" action="{% url 'buscar_consola' %}"> 
         {% csrf_token %} 
@@ -19,9 +19,9 @@
 
     <h3>Resultados:</h3>
 
-    {% if resultados %}
+    {% if consolas %}
         <ul>
-        {% for consola in resultados %}
+        {% for consola in consolas %}
             <li>
                 {{ consola.nombre }} (Lanzamiento: {{ consola.lanzamiento }}) 
                 | <a href="{% url 'ver_consola' consola.pk %}">Ver</a>
